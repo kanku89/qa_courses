@@ -18,6 +18,10 @@ public class GroupCreationTests {
     baseUrl = "http://localhost/addressbook/";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     driver.get(baseUrl);
+    login();
+  }
+
+  private void login() {
     driver.findElement(By.name("user")).click();
     driver.findElement(By.name("user")).clear();
     driver.findElement(By.name("user")).sendKeys("admin");
@@ -28,9 +32,22 @@ public class GroupCreationTests {
 
   @Test
   public void testGroupCreation() throws Exception {
+    goToGroups();
+    createNewGroup();
+    fillForm();
+    submitForm();
+    goToGroupPage();
+  }
 
-    driver.findElement(By.linkText("groups")).click();
-    driver.findElement(By.name("new")).click();
+  private void goToGroupPage() {
+    driver.findElement(By.linkText("group page")).click();
+  }
+
+  private void submitForm() {
+    driver.findElement(By.name("submit")).click();
+  }
+
+  private void fillForm() {
     driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).clear();
     driver.findElement(By.name("group_name")).sendKeys("This is a group");
@@ -40,10 +57,14 @@ public class GroupCreationTests {
     driver.findElement(By.name("group_footer")).click();
     driver.findElement(By.name("group_footer")).clear();
     driver.findElement(By.name("group_footer")).sendKeys("test");
-    driver.findElement(By.name("submit")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Groups'])[1]/following::div[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Groups'])[1]/following::div[1]")).click();
-    driver.findElement(By.linkText("group page")).click();
+  }
+
+  private void createNewGroup() {
+    driver.findElement(By.name("new")).click();
+  }
+
+  private void goToGroups() {
+    driver.findElement(By.linkText("groups")).click();
   }
 
   @AfterMethod(alwaysRun = true)
