@@ -7,13 +7,12 @@ import pl.stqa.pft.addressbook.model.ContactData;
 public class ContactCreationTest extends TestBase {
 
   @Test
-  public void testNewContact(){
+  public void testNewContact() {
     app.getNavigationHelper().addNewContact();
     app.getContactHelper().fillContactData(new ContactData("First Name", "Last Name", "Address", "Mobile", "Mail"));
     app.getGeneralHelper().submitForm();
     app.getContactHelper().returnToHome();
   }
-
 
 
 }

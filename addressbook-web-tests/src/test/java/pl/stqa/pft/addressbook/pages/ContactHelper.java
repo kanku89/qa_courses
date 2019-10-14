@@ -10,7 +10,7 @@ public class ContactHelper extends HelperBase {
     super(driver);
   }
 
-  public void fillContactData(ContactData contactData){
+  public void fillContactData(ContactData contactData) {
     sendKeys("name", "firstname", contactData.getFirstName());
     sendKeys("name", "lastname", contactData.getLastName());
     sendKeys("name", "address", contactData.getAddress());
