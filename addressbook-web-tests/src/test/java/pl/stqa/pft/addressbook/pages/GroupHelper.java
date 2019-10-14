@@ -4,34 +4,27 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pl.stqa.pft.addressbook.model.GroupData;
 
-public class GroupHelper {
-  private WebDriver driver;
+public class GroupHelper extends HelperBase {
 
   public GroupHelper(WebDriver driver) {
-    this.driver = driver;
+    super(driver);
   }
 
   public void returnToGroupPage() {
-      driver.findElement(By.linkText("group page")).click();
-    }
+    driver.findElement(By.linkText("group page")).click();
+  }
 
   public void submitGroupCreation() {
-      driver.findElement(By.name("submit")).click();
-    }
+    driver.findElement(By.name("submit")).click();
+  }
 
   public void fillNewGroup(GroupData groupData) {
-      driver.findElement(By.name("group_name")).click();
-      driver.findElement(By.name("group_name")).clear();
-      driver.findElement(By.name("group_name")).sendKeys(groupData.getName());
-      driver.findElement(By.name("group_header")).click();
-      driver.findElement(By.name("group_header")).clear();
-      driver.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-      driver.findElement(By.name("group_footer")).click();
-      driver.findElement(By.name("group_footer")).clear();
-      driver.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
-    }
+    sendKeys("name", "group_name", groupData.getName());
+    sendKeys("name", "group_header", groupData.getHeader());
+    sendKeys("name", "group_footer", groupData.getFooter());
+  }
 
   public void createNewGroup() {
-      driver.findElement(By.name("new")).click();
-    }
+    driver.findElement(By.name("new")).click();
+  }
 }
