@@ -11,15 +11,15 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillContactData(ContactData contactData){
-    sendKeys("name", "xx", contactData.getFirstName());
-    sendKeys("name", "xx", contactData.getLastName());
-    sendKeys("name", "xx", contactData.getAddress());
-    sendKeys("name", "xx", contactData.getMobile());
-    sendKeys("name", "xx", contactData.getMail());
+    sendKeys("name", "firstname", contactData.getFirstName());
+    sendKeys("name", "lastname", contactData.getLastName());
+    sendKeys("name", "address", contactData.getAddress());
+    sendKeys("name", "mobile", contactData.getMobile());
+    sendKeys("name", "email", contactData.getMail());
   }
 
   public void returnToHome() {
-    clickOnElement("name", "home page");
+    clickOnElement("link", "home page");
   }
 
 }
