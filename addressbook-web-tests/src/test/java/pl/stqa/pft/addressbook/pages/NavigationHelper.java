@@ -2,6 +2,7 @@ package pl.stqa.pft.addressbook.pages;
 
 import org.openqa.selenium.WebDriver;
 
+
 public class NavigationHelper extends HelperBase {
 
   public NavigationHelper(WebDriver driver) {
@@ -10,5 +11,9 @@ public class NavigationHelper extends HelperBase {
 
   public void goToGroups() {
     clickOnElement("link", "groups");
-    }
+  }
+
+  public void addNewContact() {
+    clickOnElement("link", "add new");
+  }
 }
