@@ -20,8 +20,18 @@ public class GroupHelper extends HelperBase {
     sendKeys("name", "group_footer", groupData.getFooter());
   }
 
+  public void clearAllGroupData() {
+    clearField("name", "group_name");
+    clearField("name", "group_header");
+    clearField("name", "group_footer");
+  }
+
   public void returnToGroupPage() {
     clickOnElement("link", "group page");
+  }
+
+  public void clickOnUpdate() {
+    clickOnElement("name", "update");
   }
 
   public void selectGroup() {
@@ -30,6 +40,10 @@ public class GroupHelper extends HelperBase {
 
   public void removeGroup() {
     clickOnElement("name", "delete");
+  }
+
+  public void editGroup() {
+    clickOnElement("name", "edit");
   }
 
 

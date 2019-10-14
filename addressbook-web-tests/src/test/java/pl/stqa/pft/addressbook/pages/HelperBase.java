@@ -51,8 +51,16 @@ public class HelperBase {
       System.out.println("Element is not clickable! Error: " + e);
 
     }
+  }
 
+  protected void clearField(String locator_type, String locator) {
+    WebElement element = driver.findElement(getByType(locator_type, locator));
 
+    try {
+      element.clear();
+    } catch (WebDriverException e) {
+      System.out.println("Cannot clear field! Error: " + e);
+    }
   }
 
 
