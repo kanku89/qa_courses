@@ -34,4 +34,9 @@ public class HelperBase {
   protected void sendKeys(String locator_type, String locator, String text) {
     driver.findElement(getByType(locator_type, locator)).sendKeys(text);
   }
+
+  protected void clickOnElement(String locator_type, String locator) {
+    driver.findElement(getByType(locator_type, locator)).click();
+
+  }
 }
