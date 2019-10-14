@@ -25,6 +25,12 @@ public class GroupHelper extends HelperBase {
   }
 
   public void selectGroup() {
-
+    clickOnElement("name", "selected[]");
   }
+
+  public void removeGroup() {
+    clickOnElement("name", "delete");
+  }
+
+
 }
