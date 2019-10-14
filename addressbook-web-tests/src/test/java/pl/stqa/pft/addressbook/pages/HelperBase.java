@@ -2,6 +2,8 @@ package pl.stqa.pft.addressbook.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 
 
 public class HelperBase {
@@ -27,15 +29,31 @@ public class HelperBase {
       default:
         return By.name(locator);
     }
-
   }
 
   protected void sendKeys(String locator_type, String locator, String text) {
-    driver.findElement(getByType(locator_type, locator)).sendKeys(text);
+    WebElement element = driver.findElement(getByType(locator_type, locator));
+
+    try {
+      element.sendKeys(text);
+    } catch (WebDriverException e) {
+      System.out.println("Cannot send keys to the field! Error: " + e);
+
+    }
   }
 
   protected void clickOnElement(String locator_type, String locator) {
-    driver.findElement(getByType(locator_type, locator)).click();
+    WebElement element = driver.findElement(getByType(locator_type, locator));
+
+    try {
+      element.click();
+    } catch (WebDriverException e) {
+      System.out.println("Element is not clickable! Error: " + e);
+
+    }
+
 
   }
+
+
 }
