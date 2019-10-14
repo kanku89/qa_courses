@@ -2,21 +2,21 @@ package pl.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pl.stqa.pft.addressbook.pages.NewGroup;
+import pl.stqa.pft.addressbook.pages.ApplicationManager;
 
 public class TestBase {
 
-  protected final NewGroup addGroup = new NewGroup();
+  protected final ApplicationManager app = new ApplicationManager();
 
   @BeforeMethod(alwaysRun = true)
     public void setUp() {
-      addGroup.init();
+      app.init();
 
     }
 
   @AfterMethod(alwaysRun = true)
     public void tearDown() {
-      addGroup.stop();
+      app.stop();
 
     }
 
