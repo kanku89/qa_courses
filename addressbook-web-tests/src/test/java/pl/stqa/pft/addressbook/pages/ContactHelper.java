@@ -35,7 +35,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void editContact() {
-    clickOnElement("xpath", "form//a[contains(@href,'edit')]");
+    clickOnElement("xpath", "//form//a[contains(@href,'edit')]");
   }
 
   public void updateContact() {
