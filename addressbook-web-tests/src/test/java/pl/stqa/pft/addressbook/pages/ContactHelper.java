@@ -18,12 +18,28 @@ public class ContactHelper extends HelperBase {
     sendKeys("name", "email", contactData.getMail());
   }
 
+  public void clearAllContactData() {
+    clearField("name", "firstname");
+    clearField("name", "lastname");
+    clearField("name", "address");
+    clearField("name", "mobile");
+    clearField("name", "email");
+  }
+
   public void returnToHome() {
     clickOnElement("link", "home page");
   }
 
   public void removeContact() {
     clickOnElement("xpath", "//form//input[@value='Delete']");
+  }
+
+  public void editContact() {
+    clickOnElement("xpath", "form//a[contains(@href,'edit')]");
+  }
+
+  public void updateContact() {
+    clickOnElement("name", "update");
   }
 
 }
