@@ -34,9 +34,7 @@ public class GroupHelper extends HelperBase {
     clickOnElement("name", "update");
   }
 
-  public void selectGroup() {
-    clickOnElement("name", "selected[]");
-  }
+
 
   public void removeGroup() {
     clickOnElement("name", "delete");

@@ -53,6 +53,14 @@ public class ApplicationManager {
     }
   }
 
+  public void acceptAlert() {
+    try {
+      driver.switchTo().alert().accept();
+    } catch (NoAlertPresentException e) {
+      System.out.println("No alert is present, error: " + e);
+    }
+  }
+
   public GroupHelper getGroupHelper() {
     return groupHelper;
   }

@@ -22,4 +22,8 @@ public class ContactHelper extends HelperBase {
     clickOnElement("link", "home page");
   }
 
+  public void removeContact() {
+    clickOnElement("xpath", "//form//input[@value='Delete']");
+  }
+
 }

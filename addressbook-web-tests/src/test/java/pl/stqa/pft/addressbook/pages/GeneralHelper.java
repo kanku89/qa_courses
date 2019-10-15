@@ -13,4 +13,8 @@ public class GeneralHelper extends HelperBase {
     clickOnElement("name", "submit");
   }
 
+  public void markCheckbox() {
+    clickOnElement("name", "selected[]");
+  }
+
 }
