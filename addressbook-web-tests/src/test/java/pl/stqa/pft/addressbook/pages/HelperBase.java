@@ -59,12 +59,13 @@ public class HelperBase {
     }
   }
 
-  protected void sendKeys(String locator_type, String locator, String text) {
+  protected void sendText(String locator_type, String locator, String text) {
     WebElement element = driver.findElement(getByType(locator_type, locator));
     String existingText = getText(locator_type, locator);
 
-    if (!existingText.equals(text)) {
+    if (!existingText.equals(text) && text != null ) {
       try {
+        clearField(locator_type, locator);
         element.sendKeys(text);
       } catch (WebDriverException e) {
         System.out.println("Cannot send keys to the field! Error: " + e);

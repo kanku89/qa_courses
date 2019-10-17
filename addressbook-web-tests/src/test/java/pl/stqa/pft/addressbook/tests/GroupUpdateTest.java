@@ -13,7 +13,7 @@ public class GroupUpdateTest extends TestBase {
     }
     app.getGeneralHelper().markCheckbox();
     app.getGroupHelper().clickOnGroupUpdate();
-    app.getGroupHelper().fillGroupForm(new GroupData("Send keys test", "with a description", "and something"));
+    app.getGroupHelper().fillGroupForm(new GroupData(null, "with a description", null));
     app.getGroupHelper().clickOnUpdate();
     app.getGroupHelper().returnToGroupPage();
   }

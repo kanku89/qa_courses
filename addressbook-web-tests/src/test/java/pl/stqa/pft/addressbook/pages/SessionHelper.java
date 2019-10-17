@@ -10,8 +10,8 @@ public class SessionHelper extends HelperBase {
   }
 
   public void login(String user, String password) {
-    sendKeys("name", "user", user);
-    sendKeys("name", "pass", password);
+    sendText("name", "user", user);
+    sendText("name", "pass", password);
     clickOnElement("xpath", "//form//input[@value='Login']");
   }
 }

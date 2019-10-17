@@ -11,19 +11,11 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillContactData(ContactData contactData) {
-    sendKeys("name", "firstname", contactData.getFirstName());
-    sendKeys("name", "lastname", contactData.getLastName());
-    sendKeys("name", "address", contactData.getAddress());
-    sendKeys("name", "mobile", contactData.getMobile());
-    sendKeys("name", "email", contactData.getMail());
-  }
-
-  public void clearAllContactData() {
-    clearField("name", "firstname");
-    clearField("name", "lastname");
-    clearField("name", "address");
-    clearField("name", "mobile");
-    clearField("name", "email");
+    sendText("name", "firstname", contactData.getFirstName());
+    sendText("name", "lastname", contactData.getLastName());
+    sendText("name", "address", contactData.getAddress());
+    sendText("name", "mobile", contactData.getMobile());
+    sendText("name", "email", contactData.getMail());
   }
 
   public void returnToHome() {

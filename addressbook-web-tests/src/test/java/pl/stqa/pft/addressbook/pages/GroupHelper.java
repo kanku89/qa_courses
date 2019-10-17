@@ -15,12 +15,9 @@ public class GroupHelper extends HelperBase {
   }
 
   public void fillGroupForm(GroupData groupData) {
-    clearField("name", "group_name");
-    sendKeys("name", "group_name", groupData.getName());
-    clearField("name", "group_header");
-    sendKeys("name", "group_header", groupData.getHeader());
-    clearField("name", "group_footer");
-    sendKeys("name", "group_footer", groupData.getFooter());
+    sendText("name", "group_name", groupData.getName());
+    sendText("name", "group_header", groupData.getHeader());
+    sendText("name", "group_footer", groupData.getFooter());
   }
 
   public void returnToGroupPage() {
