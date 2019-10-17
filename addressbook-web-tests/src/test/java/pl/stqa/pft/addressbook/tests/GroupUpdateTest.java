@@ -8,10 +8,12 @@ public class GroupUpdateTest extends TestBase {
   @Test
   public void testRemoveGroup() {
     app.getNavigationHelper().goToGroups();
+    if (!app.getGeneralHelper().isThereAnElement()) {
+      app.getGroupHelper().createGroup(new GroupData("Just", "For a", "Test"));
+    }
     app.getGeneralHelper().markCheckbox();
-    app.getGroupHelper().editGroup();
-    app.getGroupHelper().clearAllGroupData();
-    app.getGroupHelper().fillNewGroup(new GroupData("This is totally new group", "This is group Header", "This is group footer"));
+    app.getGroupHelper().clickOnGroupUpdate();
+    app.getGroupHelper().fillGroupForm(new GroupData("Send keys test", "with a description", "and something"));
     app.getGroupHelper().clickOnUpdate();
     app.getGroupHelper().returnToGroupPage();
   }

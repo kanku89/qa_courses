@@ -17,4 +17,8 @@ public class GeneralHelper extends HelperBase {
     clickOnElement("name", "selected[]");
   }
 
+  public boolean isThereAnElement() {
+    return isElementPresent("name", "selected[]");
+  }
+
 }

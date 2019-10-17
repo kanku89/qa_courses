@@ -46,7 +46,7 @@ public class HelperBase {
 
   protected boolean isElementPresent(String locator_type, String locator) {
     try {
-      WebElement element = getElement(locator, locator_type);
+      WebElement element = getElement(locator_type, locator);
       if (element != null) {
         return true;
       } else {
@@ -61,12 +61,14 @@ public class HelperBase {
 
   protected void sendKeys(String locator_type, String locator, String text) {
     WebElement element = driver.findElement(getByType(locator_type, locator));
+    String existingText = getText(locator_type, locator);
 
-    try {
-      element.sendKeys(text);
-    } catch (WebDriverException e) {
-      System.out.println("Cannot send keys to the field! Error: " + e);
-
+    if (!existingText.equals(text)) {
+      try {
+        element.sendKeys(text);
+      } catch (WebDriverException e) {
+        System.out.println("Cannot send keys to the field! Error: " + e);
+      }
     }
   }
 
@@ -90,5 +92,21 @@ public class HelperBase {
     }
   }
 
+  protected String getText(String locator_type, String locator) {
+    String text = null;
+    WebElement element = null;
+    try {
+      if (locator != null) {
+        element = getElement(locator_type, locator);
+        text = element.getAttribute("value");
+      }
+      if (text.length() == 0) {
+        text = element.getAttribute("innerText");
+      }
 
+    } catch (WebDriverException e) {
+      LOGGER.info("Text not found in locator {locator}. Error: " + e);
+    }
+    return text;
+  }
 }

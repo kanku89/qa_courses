@@ -10,20 +10,17 @@ public class GroupHelper extends HelperBase {
     super(driver);
   }
 
-  public void createNewGroup() {
+  public void clickOnNewGroup() {
     clickOnElement("name", "new");
   }
 
-  public void fillNewGroup(GroupData groupData) {
-    sendKeys("name", "group_name", groupData.getName());
-    sendKeys("name", "group_header", groupData.getHeader());
-    sendKeys("name", "group_footer", groupData.getFooter());
-  }
-
-  public void clearAllGroupData() {
+  public void fillGroupForm(GroupData groupData) {
     clearField("name", "group_name");
+    sendKeys("name", "group_name", groupData.getName());
     clearField("name", "group_header");
+    sendKeys("name", "group_header", groupData.getHeader());
     clearField("name", "group_footer");
+    sendKeys("name", "group_footer", groupData.getFooter());
   }
 
   public void returnToGroupPage() {
@@ -34,15 +31,23 @@ public class GroupHelper extends HelperBase {
     clickOnElement("name", "update");
   }
 
-
+  public void submitGroupForm() {
+    clickOnElement("name", "submit");
+  }
 
   public void removeGroup() {
     clickOnElement("name", "delete");
   }
 
-  public void editGroup() {
+  public void clickOnGroupUpdate() {
     clickOnElement("name", "edit");
   }
 
+  public void createGroup(GroupData groupData) {
+    clickOnNewGroup();
+    fillGroupForm(groupData);
+    submitGroupForm();
+    returnToGroupPage();
+  }
 
 }
