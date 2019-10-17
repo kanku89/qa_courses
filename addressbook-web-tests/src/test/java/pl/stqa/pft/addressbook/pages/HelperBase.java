@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
@@ -54,7 +53,7 @@ public class HelperBase {
     try {
       element.click();
     } catch (WebDriverException e) {
-      LOGGER.log(Level.SEVERE, "Element is not clickable! Error: " + e);
+      LOGGER.info("Element is not clickable! Error: " + e);
     }
   }
 
@@ -64,7 +63,7 @@ public class HelperBase {
     try {
       element.clear();
     } catch (WebDriverException e) {
-      LOGGER.log(Level.SEVERE, "Cannot clear field! Error: " + e);
+      LOGGER.info("Cannot clear field! Error: " + e);
     }
   }
 
