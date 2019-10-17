@@ -1,9 +1,6 @@
 package pl.stqa.pft.addressbook.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 import java.util.logging.Logger;
 
@@ -33,6 +30,32 @@ public class HelperBase {
         return By.linkText(locator);
       default:
         return By.name(locator);
+    }
+  }
+
+  protected WebElement getElement(String locator_type, String locator) {
+    WebElement element = null;
+    try {
+      element = driver.findElement(getByType(locator_type, locator));
+    } catch (NoSuchElementException | ElementNotVisibleException |
+        ElementNotSelectableException e) {
+      LOGGER.info("Element not found with locator {locator}, error " + e);
+    }
+    return element;
+  }
+
+  protected boolean isElementPresent(String locator_type, String locator) {
+    try {
+      WebElement element = getElement(locator, locator_type);
+      if (element != null) {
+        return true;
+      } else {
+        LOGGER.info("Element not present with locator {locator}");
+        return false;
+      }
+    } catch (WebDriverException e) {
+      LOGGER.info("Element not found, error " + e);
+      return false;
     }
   }
 

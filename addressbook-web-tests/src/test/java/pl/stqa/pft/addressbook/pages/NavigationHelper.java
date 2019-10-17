@@ -10,15 +10,20 @@ public class NavigationHelper extends HelperBase {
   }
 
   public void goToGroups() {
-    clickOnElement("link", "groups");
+    if (!isElementPresent("xpath", "//h1[.='Groups']") | !isElementPresent("name", "new")) {
+      clickOnElement("link", "groups");
+    }
   }
 
   public void addNewContact() {
-    clickOnElement("link", "add new");
+    if (!isElementPresent("xpath", "//h1[.='Edit / add address book entry']")) {
+      clickOnElement("link", "add new");
+    }
   }
 
   public void goHome() {
-    clickOnElement("link", "home");
+    if (!isElementPresent("name", "MainForm")) {
+      clickOnElement("link", "home");
+    }
   }
-
 }

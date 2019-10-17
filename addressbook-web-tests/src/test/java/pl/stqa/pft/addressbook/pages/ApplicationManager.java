@@ -37,7 +37,7 @@ public class ApplicationManager {
     }
 
 
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     driver.get(baseUrl);
     generalHelper = new GeneralHelper(driver);
     groupHelper = new GroupHelper(driver);
