@@ -42,4 +42,13 @@ public class ContactHelper extends HelperBase {
     clickOnElement("name", "update");
   }
 
+  public void submitContactForm() {
+    clickOnElement("name", "submit");
+  }
+
+  public void createNewContact(ContactData contactData) {
+    fillContactData(contactData);
+    submitContactForm();
+    returnToHome();
+  }
 }

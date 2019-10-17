@@ -6,7 +6,7 @@ import pl.stqa.pft.addressbook.model.ContactData;
 public class ContactUpdateTest extends TestBase {
 
   @Test
-  public void testRemoveGroup() {
+  public void testUpdateContact() {
     app.getNavigationHelper().goHome();
     app.getContactHelper().editContact();
     app.getContactHelper().clearAllContactData();

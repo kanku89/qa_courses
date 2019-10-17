@@ -6,10 +6,10 @@ import pl.stqa.pft.addressbook.model.GroupData;
 public class GroupUpdateTest extends TestBase {
 
   @Test
-  public void testRemoveGroup() {
+  public void testUpdateGroup() {
     app.getNavigationHelper().goToGroups();
     if (!app.getGeneralHelper().isThereAnElement()) {
-      app.getGroupHelper().createGroup(new GroupData("Just", "For a", "Test"));
+      app.getGroupHelper().createGroup(new GroupData("Send keys test", "For a", "Test"));
     }
     app.getGeneralHelper().markCheckbox();
     app.getGroupHelper().clickOnGroupUpdate();
