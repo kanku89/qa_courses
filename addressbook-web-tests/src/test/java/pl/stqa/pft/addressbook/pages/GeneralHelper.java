@@ -2,6 +2,8 @@ package pl.stqa.pft.addressbook.pages;
 
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class GeneralHelper extends HelperBase {
 
@@ -19,6 +21,10 @@ public class GeneralHelper extends HelperBase {
 
   public boolean isThereAnElement() {
     return isElementPresent("name", "selected[]");
+  }
+
+  public void waiter() {
+    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
   }
 
 }

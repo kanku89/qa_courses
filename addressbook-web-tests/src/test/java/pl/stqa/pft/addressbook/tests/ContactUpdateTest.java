@@ -27,11 +27,14 @@ public class ContactUpdateTest extends TestBase {
 
     Assert.assertEquals(after.size(), before.size());
 
+    before.remove(before.get(0));
+    before.add(contact);
+
     Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
     Comparator<? super ContactData> byFirstName = (g1, g2) -> CharSequence.compare(g1.getFirstName(), g2.getFirstName());
     Comparator<? super ContactData> byLastName = (g1, g2) -> CharSequence.compare(g1.getLastName(), g2.getLastName());
-    before.sort(byLastName);
-    after.sort(byLastName);
+    before.sort(byId);
+    after.sort(byId);
     Assert.assertEquals(before, after);
 
   }

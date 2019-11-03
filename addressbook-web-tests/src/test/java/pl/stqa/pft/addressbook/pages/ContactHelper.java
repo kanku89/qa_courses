@@ -57,8 +57,8 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = driver.findElements(getByType("name", "entry"));
     for (WebElement element : elements) {
-      String FIRST_NAME = element.findElement(getByType("xpath", "//td[3]")).getText();
-      String LAST_NAME = element.findElement(getByType("xpath", "//td[2]")).getText();
+      String FIRST_NAME = element.findElement(getByType("xpath", ".//td[3]")).getText();
+      String LAST_NAME = element.findElement(getByType("xpath", ".//td[2]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
       ContactData contact = new ContactData(id, FIRST_NAME, LAST_NAME, null, null, null);
       contacts.add(contact);
