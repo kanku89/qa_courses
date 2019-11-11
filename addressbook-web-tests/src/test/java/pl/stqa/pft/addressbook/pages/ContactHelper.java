@@ -49,6 +49,13 @@ public class ContactHelper extends HelperBase {
     returnToHome();
   }
 
+  public void modifyContact(ContactData contact) {
+    editContact();
+    fillContactData(contact);
+    updateContact();
+    returnToHome();
+  }
+
   public void selectContact(int index) {
     driver.findElements(getByType("name", "selected[]")).get(index).click();
   }

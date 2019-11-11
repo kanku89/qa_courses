@@ -1,6 +1,7 @@
 package pl.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.stqa.pft.addressbook.model.ContactData;
 
@@ -9,22 +10,22 @@ import java.util.List;
 
 public class ContactUpdateTest extends TestBase {
 
-  @Test
-  public void testUpdateContact() {
+  @BeforeMethod
+  public void ensurePreconditions() {
     app.getNavigationHelper().goHome();
     if (!app.getGeneralHelper().isThereAnElement()) {
       app.getContactHelper().createNewContact(new ContactData(0, "Just", "Random", "Words",
           "For", "Test"));
     }
+  }
+
+  @Test
+  public void testUpdateContact() {
     List<ContactData> before = app.getContactHelper().getContactsList();
-    app.getContactHelper().editContact();
     ContactData contact = new ContactData(0, "New First Name", "New Last Name",
         "New Address", "987654321", "mail2@mail.com");
-    app.getContactHelper().fillContactData(contact);
-    app.getContactHelper().updateContact();
-    app.getContactHelper().returnToHome();
+    app.getContactHelper().modifyContact(contact);
     List<ContactData> after = app.getContactHelper().getContactsList();
-
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(before.get(0));
@@ -38,5 +39,7 @@ public class ContactUpdateTest extends TestBase {
     Assert.assertEquals(before, after);
 
   }
+
+
 
 }
