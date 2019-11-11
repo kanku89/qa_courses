@@ -14,7 +14,7 @@ public class GroupDeletionTest extends TestBase {
   public void ensurePreconditions() {
     app.getNavigationHelper().goToGroups();
     if (!app.getGeneralHelper().isThereAnElement()) {
-      app.getGroupHelper().createGroup(new GroupData(0, "Send keys test", "For a", "Test"));
+      app.getGroupHelper().createGroup(new GroupData().withName("Test 1"));
     }
   }
 
