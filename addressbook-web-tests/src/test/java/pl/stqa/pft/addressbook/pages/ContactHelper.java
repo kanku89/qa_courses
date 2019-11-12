@@ -4,8 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pl.stqa.pft.addressbook.model.ContactData;
+import pl.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -56,21 +56,27 @@ public class ContactHelper extends HelperBase {
     returnToHome();
   }
 
-  public void selectContact(int index) {
-    driver.findElements(getByType("name", "selected[]")).get(index).click();
+  public void deleteContact(ContactData contact) {
+    selectContactById(contact.getId());
+    removeContact();
+    returnToHome();
   }
 
-  public List<ContactData> getContactsList() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public void selectContactById(int id) {
+    driver.findElement(getByType("css", "input[value='" + id + "'")).click();
+  }
+
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> elements = driver.findElements(getByType("name", "entry"));
     for (WebElement element : elements) {
       String FIRST_NAME = element.findElement(getByType("xpath", ".//td[3]")).getText();
       String LAST_NAME = element.findElement(getByType("xpath", ".//td[2]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      ContactData contact = new ContactData(id, FIRST_NAME, LAST_NAME, null, null, null);
-      contacts.add(contact);
+      contacts.add(new ContactData().withId(id).withFirstName(FIRST_NAME).withLastName(LAST_NAME));
     }
     return contacts;
 
   }
+
 }

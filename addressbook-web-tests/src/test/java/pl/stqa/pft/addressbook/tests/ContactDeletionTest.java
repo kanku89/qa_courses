@@ -1,12 +1,12 @@
 package pl.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.stqa.pft.addressbook.model.ContactData;
+import pl.stqa.pft.addressbook.model.Contacts;
 
-import java.util.Comparator;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDeletionTest extends TestBase {
 
@@ -14,30 +14,25 @@ public class ContactDeletionTest extends TestBase {
   public void ensurePreconditions() {
     app.getNavigationHelper().goHome();
     if (!app.getGeneralHelper().isThereAnElement()) {
-      app.getContactHelper().createNewContact(new ContactData(0, "Just", "Random", "Words",
-          "For", "Test"));
+      app.getContactHelper().createNewContact(new ContactData().withFirstName("Just").withLastName("Random").withAddress("Words").withMobile("Words").withMail("for@test.com"));
     }
   }
 
   @Test
   public void testRemoveContact() {
-    List<ContactData> before = app.getContactHelper().getContactsList();
+    Contacts before = app.getContactHelper().all();
 
-    app.getContactHelper().selectContact(before.size() - 1);
+    ContactData deletedContact = before.iterator().next();
+    app.getContactHelper().deleteContact(deletedContact);
     app.getContactHelper().removeContact();
     app.acceptAlert();
     app.getNavigationHelper().goHome();
     app.getGeneralHelper().waiter();
-    List<ContactData> after = app.getContactHelper().getContactsList();
-    Assert.assertEquals(after.size(), before.size() - 1);
-    before.remove(before.size() - 1);
+    Contacts after = app.getContactHelper().all();
+    assertThat(after.size(), equalTo(before.size() - 1));
 
-    Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    Comparator<? super ContactData> byFirstName = (g1, g2) -> CharSequence.compare(g1.getFirstName(), g2.getFirstName());
-    Comparator<? super ContactData> byLastName = (g1, g2) -> CharSequence.compare(g1.getLastName(), g2.getLastName());
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
+    assertThat(before, equalTo(after.without(deletedContact)));
+
   }
 
 }
