@@ -1,11 +1,11 @@
 package pl.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pl.stqa.pft.addressbook.model.GroupData;
+import pl.stqa.pft.addressbook.model.Groups;
 
-import java.util.Comparator;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class GroupCreationTests extends TestBase {
@@ -13,17 +13,14 @@ public class GroupCreationTests extends TestBase {
   @Test
   public void testGroupCreation() {
     app.getNavigationHelper().goToGroups();
-    List<GroupData> before = app.getGroupHelper().getGroupList();
+    Groups before = app.getGroupHelper().all();
     GroupData group = new GroupData().withName("Test2");
     app.getGroupHelper().createGroup(group);
-    List<GroupData> after = app.getGroupHelper().getGroupList();
-    Assert.assertEquals(after.size(), before.size() + 1);
+    Groups after = app.getGroupHelper().all();
+    assertThat(after.size(), equalTo(before.size() + 1));
 
-    before.add(group);
-    Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(before, after);
+    assertThat(before, equalTo(before
+        .withAdded(group.withId(after.stream().mapToInt(GroupData::getId).max().getAsInt()))));
 
   }
 

@@ -1,13 +1,12 @@
 package pl.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.stqa.pft.addressbook.model.GroupData;
+import pl.stqa.pft.addressbook.model.Groups;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupUpdateTest extends TestBase {
 
@@ -21,24 +20,18 @@ public class GroupUpdateTest extends TestBase {
 
   @Test
   public void testUpdateGroup() {
-    List<GroupData> before = app.getGroupHelper().getGroupList();
-    int index = before.size() - 1;
+    Groups before = app.getGroupHelper().all();
+    GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
-        .withId(before.get(index).getId())
+        .withId(modifiedGroup.getId())
         .withName("Name")
         .withHeader("Header")
         .withFooter("Footer");
-    app.getGroupHelper().modifyGroup(index, group);
-    List<GroupData> after = app.getGroupHelper().getGroupList();
-    Assert.assertEquals(before.size(), after.size());
+    app.getGroupHelper().modifyGroup(group);
+    Groups after = app.getGroupHelper().all();
+    assertThat(before, equalTo(after));
 
-    before.remove(index);
-    before.add(group);
-
-    Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-    before.sort(byId);
-    after.sort(byId);
-    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+    assertThat(before, equalTo(before.without(modifiedGroup).withAdded(group)));
 
   }
 
