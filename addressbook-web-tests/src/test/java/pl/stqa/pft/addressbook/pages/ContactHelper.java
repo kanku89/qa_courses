@@ -43,9 +43,12 @@ public class ContactHelper extends HelperBase {
     clickOnElement("name", "submit");
   }
 
+  private Contacts contactsCache = null;
+
   public void createNewContact(ContactData contactData) {
     fillContactData(contactData);
     submitContactForm();
+    contactsCache = null;
     returnToHome();
   }
 
@@ -53,13 +56,18 @@ public class ContactHelper extends HelperBase {
     editContact();
     fillContactData(contact);
     updateContact();
+    contactsCache = null;
     returnToHome();
   }
 
   public void deleteContact(ContactData contact) {
     selectContactById(contact.getId());
     removeContact();
-    returnToHome();
+    contactsCache = null;
+  }
+
+  public int contactsCount() {
+    return driver.findElements(By.name("selected[]")).size();
   }
 
   public void selectContactById(int id) {
@@ -67,16 +75,58 @@ public class ContactHelper extends HelperBase {
   }
 
   public Contacts all() {
-    Contacts contacts = new Contacts();
-    List<WebElement> elements = driver.findElements(getByType("name", "entry"));
-    for (WebElement element : elements) {
-      String FIRST_NAME = element.findElement(getByType("xpath", ".//td[3]")).getText();
-      String LAST_NAME = element.findElement(getByType("xpath", ".//td[2]")).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      contacts.add(new ContactData().withId(id).withFirstName(FIRST_NAME).withLastName(LAST_NAME));
+    if (contactsCache != null) {
+      return new Contacts(contactsCache);
     }
-    return contacts;
+    contactsCache = new Contacts();
+    List<WebElement> rows = driver.findElements(getByType("name", "entry"));
+    for (WebElement row : rows) {
+      String FIRST_NAME = row.findElement(getByType("xpath", ".//td[3]")).getText();
+      String LAST_NAME = row.findElement(getByType("xpath", ".//td[2]")).getText();
+      String ADDRESS = row.findElement(getByType("xpath", ".//td[4]")).getText();
+      String ALL_MAILS = row.findElement(getByType("xpath", ".//td[5]")).getText();
+      String ALL_PHONES = row.findElement(getByType("xpath", ".//td[6]")).getText();
+      int id = Integer.parseInt(row.findElement(By.tagName("input")).getAttribute("id"));
+      contactsCache.add(new ContactData()
+          .withId(id)
+          .withFirstName(FIRST_NAME)
+          .withLastName(LAST_NAME)
+          .withAddress(ADDRESS)
+          .withAllMails(ALL_MAILS)
+          .withAllPhones(ALL_PHONES)
+      );
+    }
+    return new Contacts(contactsCache);
 
+  }
+
+  public ContactData infoFromForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+    String firstName = driver.findElement(By.name("firstname")).getAttribute("value");
+    String lastName = driver.findElement(By.name("lastname")).getAttribute("value");
+    String home = driver.findElement(By.name("home")).getAttribute("value");
+    String mobile = driver.findElement(By.name("mobile")).getAttribute("value");
+    String work = driver.findElement(By.name("phone2")).getAttribute("value");
+    String address = driver.findElement(By.name("address")).getAttribute("value");
+    String mail = driver.findElement(By.name("email")).getAttribute("value");
+    String mail2 = driver.findElement(By.name("email2")).getAttribute("value");
+    String mail3 = driver.findElement(By.name("email3")).getAttribute("value");
+    driver.navigate().back();
+    return new ContactData()
+        .withId(contact.getId())
+        .withFirstName(firstName)
+        .withLastName(lastName)
+        .withAddress(address)
+        .withMail(mail)
+        .withMail2(mail2)
+        .withMail3(mail3)
+        .withHomePhone(home)
+        .withMobile(mobile)
+        .withWorkPhone(work);
+  }
+
+  private void initContactModificationById(int id) {
+    driver.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
   }
 
 }

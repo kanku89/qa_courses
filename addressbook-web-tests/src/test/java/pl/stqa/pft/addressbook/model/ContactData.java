@@ -3,12 +3,39 @@ package pl.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
+  private int id = Integer.MAX_VALUE;
   private String firstName;
   private String lastName;
   private String address;
   private String mobile;
   private String mail;
+  private String mail2;
+  private String mail3;
+  private String homePhone;
+  private String workPhone;
+  private String allPhones;
+  private String allMails;
+
+
+  public String getAllMails() {
+    return allMails;
+  }
+
+  public ContactData withAllMails(String allMails) {
+    this.allMails = allMails;
+    return this;
+  }
+
+  public ContactData withMail2(String mail2) {
+    this.mail2 = mail2;
+    return this;
+  }
+
+  public ContactData withMail3(String mail3) {
+    this.mail3 = mail3;
+    return this;
+  }
+
 
   public ContactData withId(int id) {
     this.id = id;
@@ -20,8 +47,23 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+  }
+
   public ContactData withLastName(String lastName) {
     this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
     return this;
   }
 
@@ -38,6 +80,18 @@ public class ContactData {
   public ContactData withMail(String mail) {
     this.mail = mail;
     return this;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public String getMail2() {
+    return mail2;
+  }
+
+  public String getMail3() {
+    return mail3;
   }
 
   @Override
@@ -68,6 +122,15 @@ public class ContactData {
   public String getMobile() {
     return mobile;
   }
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
+
+  public String getHomePhone() {
+    return homePhone;
+  }
+
 
   public String getMail() {
     return mail;

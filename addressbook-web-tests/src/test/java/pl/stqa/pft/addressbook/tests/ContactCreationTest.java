@@ -21,9 +21,8 @@ public class ContactCreationTest extends TestBase {
         .withMobile("123456789")
         .withMail("mail@mail.com");
     app.getContactHelper().createNewContact(contact);
+    assertThat(app.getContactHelper().contactsCount(), equalTo(before.size() + 1));
     Contacts after = app.getContactHelper().all();
-    assertThat(after.size(), equalTo(before.size() + 1));
-
     assertThat(after, equalTo(before.withAdded(contact)));
 
 
