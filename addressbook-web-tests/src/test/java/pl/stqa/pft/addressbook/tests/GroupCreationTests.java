@@ -19,7 +19,7 @@ public class GroupCreationTests extends TestBase {
     Groups after = app.getGroupHelper().all();
     assertThat(after.size(), equalTo(before.size() + 1));
 
-    assertThat(before, equalTo(before
+    assertThat(after, equalTo(before
         .withAdded(group.withId(after.stream().mapToInt(GroupData::getId).max().getAsInt()))));
 
   }

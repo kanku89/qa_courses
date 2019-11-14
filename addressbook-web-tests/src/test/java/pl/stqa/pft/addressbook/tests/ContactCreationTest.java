@@ -24,7 +24,7 @@ public class ContactCreationTest extends TestBase {
     Contacts after = app.getContactHelper().all();
     assertThat(after.size(), equalTo(before.size() + 1));
 
-    assertThat(before, equalTo(after.withAdded(contact)));
+    assertThat(after, equalTo(before.withAdded(contact)));
 
 
   }

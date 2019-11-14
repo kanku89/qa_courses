@@ -31,7 +31,7 @@ public class GroupUpdateTest extends TestBase {
     Groups after = app.getGroupHelper().all();
     assertThat(before, equalTo(after));
 
-    assertThat(before, equalTo(before.without(modifiedGroup).withAdded(group)));
+    assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
 
   }
 
