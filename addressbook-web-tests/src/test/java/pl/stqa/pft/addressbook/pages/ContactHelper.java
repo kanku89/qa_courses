@@ -94,6 +94,7 @@ public class ContactHelper extends HelperBase {
           .withAddress(ADDRESS)
           .withAllMails(ALL_MAILS)
           .withAllPhones(ALL_PHONES)
+          .withAllData(ALL_MAILS)
       );
     }
     return new Contacts(contactsCache);
@@ -108,6 +109,7 @@ public class ContactHelper extends HelperBase {
     String mobile = driver.findElement(By.name("mobile")).getAttribute("value");
     String work = driver.findElement(By.name("phone2")).getAttribute("value");
     String address = driver.findElement(By.name("address")).getAttribute("value");
+    String address2 = driver.findElement(By.name("address2")).getAttribute("value");
     String mail = driver.findElement(By.name("email")).getAttribute("value");
     String mail2 = driver.findElement(By.name("email2")).getAttribute("value");
     String mail3 = driver.findElement(By.name("email3")).getAttribute("value");
@@ -117,6 +119,7 @@ public class ContactHelper extends HelperBase {
         .withFirstName(firstName)
         .withLastName(lastName)
         .withAddress(address)
+        .withAddress2(address2)
         .withMail(mail)
         .withMail2(mail2)
         .withMail3(mail3)
@@ -125,8 +128,26 @@ public class ContactHelper extends HelperBase {
         .withWorkPhone(work);
   }
 
+  public String infoFromProfile(ContactData contact) {
+    initContactProfileById(contact.getId());
+    String profileData = driver.findElement(By.id("content")).getText();
+    driver.navigate().back();
+    return profileData;
+
+  }
+
+
+
   private void initContactModificationById(int id) {
     driver.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
+  }
+
+  public void initContactProfileById(int id) {
+    driver.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[7]/a", id))).click();
+  }
+
+  private void initContactProfileUpdate() {
+    driver.findElement(By.name("modifiy")).click();
   }
 
 }
