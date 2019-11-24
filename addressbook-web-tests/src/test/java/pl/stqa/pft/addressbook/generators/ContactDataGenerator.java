@@ -76,6 +76,7 @@ public class ContactDataGenerator {
           .withLastName(String.format("LastName %s", i))
           .withAddress(String.format("Address %s", i))
           .withMobile(String.format("Mobile %s", i))
+          .withMail(String.format("mail%s@mail.com", i))
       );
 
     }

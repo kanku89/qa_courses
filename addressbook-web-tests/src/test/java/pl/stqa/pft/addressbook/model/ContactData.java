@@ -16,6 +16,7 @@ public class ContactData {
   private String address2;
   @Expose
   private String mobile;
+  @Expose
   private String mail;
   private String mail2;
   private String mail3;

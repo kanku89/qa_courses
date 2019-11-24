@@ -1,0 +1,72 @@
+<list>
+  <pl.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 0</firstName>
+    <lastName>LastName 0</lastName>
+    <address>Address 0</address>
+    <mobile>Mobile 0</mobile>
+  </pl.stqa.pft.addressbook.model.ContactData>
+  <pl.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 1</firstName>
+    <lastName>LastName 1</lastName>
+    <address>Address 1</address>
+    <mobile>Mobile 1</mobile>
+  </pl.stqa.pft.addressbook.model.ContactData>
+  <pl.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 2</firstName>
+    <lastName>LastName 2</lastName>
+    <address>Address 2</address>
+    <mobile>Mobile 2</mobile>
+  </pl.stqa.pft.addressbook.model.ContactData>
+  <pl.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 3</firstName>
+    <lastName>LastName 3</lastName>
+    <address>Address 3</address>
+    <mobile>Mobile 3</mobile>
+  </pl.stqa.pft.addressbook.model.ContactData>
+  <pl.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 4</firstName>
+    <lastName>LastName 4</lastName>
+    <address>Address 4</address>
+    <mobile>Mobile 4</mobile>
+  </pl.stqa.pft.addressbook.model.ContactData>
+  <pl.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 5</firstName>
+    <lastName>LastName 5</lastName>
+    <address>Address 5</address>
+    <mobile>Mobile 5</mobile>
+  </pl.stqa.pft.addressbook.model.ContactData>
+  <pl.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 6</firstName>
+    <lastName>LastName 6</lastName>
+    <address>Address 6</address>
+    <mobile>Mobile 6</mobile>
+  </pl.stqa.pft.addressbook.model.ContactData>
+  <pl.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 7</firstName>
+    <lastName>LastName 7</lastName>
+    <address>Address 7</address>
+    <mobile>Mobile 7</mobile>
+  </pl.stqa.pft.addressbook.model.ContactData>
+  <pl.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 8</firstName>
+    <lastName>LastName 8</lastName>
+    <address>Address 8</address>
+    <mobile>Mobile 8</mobile>
+  </pl.stqa.pft.addressbook.model.ContactData>
+  <pl.stqa.pft.addressbook.model.ContactData>
+    <id>2147483647</id>
+    <firstName>FirstName 9</firstName>
+    <lastName>LastName 9</lastName>
+    <address>Address 9</address>
+    <mobile>Mobile 9</mobile>
+  </pl.stqa.pft.addressbook.model.ContactData>
+</list>
