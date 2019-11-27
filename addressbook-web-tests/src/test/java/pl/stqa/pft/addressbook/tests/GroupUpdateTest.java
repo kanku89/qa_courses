@@ -12,24 +12,26 @@ public class GroupUpdateTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.getNavigationHelper().goToGroups();
-    if (!app.getGeneralHelper().isThereAnElement()) {
+    if (app.db().groups().size() == 0) {
+      app.getNavigationHelper().goToGroups();
       app.getGroupHelper().createGroup(new GroupData().withName("Test 2"));
     }
+
   }
 
   @Test
   public void testUpdateGroup() {
-    Groups before = app.getGroupHelper().all();
+    Groups before = app.db().groups();
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
         .withId(modifiedGroup.getId())
         .withName("Name")
         .withHeader("Header")
         .withFooter("Footer");
+    app.getNavigationHelper().goToGroups();
     app.getGroupHelper().modifyGroup(group);
-    assertThat(app.getGroupHelper().groupsCount(), equalTo(before));
-    Groups after = app.getGroupHelper().all();
+//    assertThat(app.getGroupHelper().groupsCount(), equalTo(before));
+    Groups after = app.db().groups();
 
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
 
