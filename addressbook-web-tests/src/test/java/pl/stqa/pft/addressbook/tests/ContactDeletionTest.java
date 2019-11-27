@@ -12,10 +12,11 @@ public class ContactDeletionTest extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
-    app.getNavigationHelper().goHome();
-    if (!app.getGeneralHelper().isThereAnElement()) {
+    if (app.db().groups().size() == 0) {
+      app.getNavigationHelper().goHome();
       app.getContactHelper().createNewContact(new ContactData().withFirstName("Just").withLastName("Random").withAddress("Words").withMobile("Words").withMail("for@test.com"));
     }
+
   }
 
   @Test
@@ -29,7 +30,7 @@ public class ContactDeletionTest extends TestBase {
     app.acceptAlert();
     app.getNavigationHelper().goHome();
     app.getGeneralHelper().waiter();
-    assertThat(app.getContactHelper().contactsCount(), equalTo(before.size() - 1));
+//    assertThat(app.getContactHelper().contactsCount(), equalTo(before.size() - 1));
     Contacts after = app.db().contacts();
 
     assertThat(after, equalTo(before.without(deletedContact)));
