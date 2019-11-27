@@ -20,7 +20,7 @@ public class ContactDeletionTest extends TestBase {
 
   @Test
   public void testRemoveContact() {
-    Contacts before = app.getContactHelper().all();
+    Contacts before = app.db().contacts();
 
     ContactData deletedContact = before.iterator().next();
     app.getContactHelper().deleteContact(deletedContact);
@@ -30,7 +30,7 @@ public class ContactDeletionTest extends TestBase {
     app.getNavigationHelper().goHome();
     app.getGeneralHelper().waiter();
     assertThat(app.getContactHelper().contactsCount(), equalTo(before.size() - 1));
-    Contacts after = app.getContactHelper().all();
+    Contacts after = app.db().contacts();
 
     assertThat(after, equalTo(before.without(deletedContact)));
 
