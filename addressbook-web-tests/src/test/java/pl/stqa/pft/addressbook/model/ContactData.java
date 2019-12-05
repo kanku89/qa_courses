@@ -5,7 +5,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "addressbook")
@@ -57,6 +59,10 @@ public class ContactData {
   @Transient
   private File photo;
 
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+      inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<>();
 
 
   public String getAllMails() {
@@ -202,6 +208,10 @@ public class ContactData {
   }
 
 
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
+
   public String getMail() {
     return mail;
   }
@@ -219,5 +229,10 @@ public class ContactData {
   @Override
   public int hashCode() {
     return Objects.hash(firstName, lastName);
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 }

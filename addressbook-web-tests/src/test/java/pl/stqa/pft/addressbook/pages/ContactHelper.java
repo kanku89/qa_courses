@@ -23,6 +23,11 @@ public class ContactHelper extends HelperBase {
     sendText("name", "email", contactData.getMail());
   }
 
+  public void addContactToGroup(ContactData contact) {
+    selectContactById(contact.getId());
+    toGroupButton();
+  }
+
   public void returnToHome() {
     clickOnElement("link", "home page");
   }
@@ -50,6 +55,10 @@ public class ContactHelper extends HelperBase {
     submitContactForm();
     contactsCache = null;
     returnToHome();
+  }
+
+  public void toGroupButton() {
+    clickOnElement("name", "add");
   }
 
   public void modifyContact(ContactData contact) {
@@ -135,7 +144,6 @@ public class ContactHelper extends HelperBase {
     return profileData;
 
   }
-
 
 
   private void initContactModificationById(int id) {
